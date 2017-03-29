@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -e # die young
+
+[ -n "$DEBUG" ] && set -x
+
+if [ ! -d $HOME/.weechat ]; then
+  mkdir $HOME/.weechat
+fi
+
+docker run -it --rm \
+  -e TERM=$TERM \
+  -v $HOME/.weechat:/home/guest/.weechat \
+  weechat $@
